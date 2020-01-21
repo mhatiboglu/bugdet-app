@@ -40,7 +40,7 @@ body {
 .top {
   height: 40vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
-    url(http://i.imgur.com/u8Ldac9.jpg);
+    url(background.jpg);
   background-size: cover;
   background-position: center;
   position: relative;
