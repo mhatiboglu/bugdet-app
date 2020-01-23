@@ -163,6 +163,13 @@ var UIController = (function() {
 
     return (type === "exp" ? "-" : "+") + " " + int + "." + dec;
   };
+  //Make your special forEach function for changing every node list element
+  var nodeListForEach = function(list, callback) {
+    for (var i = 0; i < list.length; i++) {
+      callback(list[i], i);
+    }
+  };
+
   return {
     // Get inputs for global controller
     getInput: function() {
@@ -239,12 +246,6 @@ var UIController = (function() {
     //Display percentages
     displayPercentages: function(percentages) {
       var fields = document.querySelectorAll(DOMstrings.expensesPercLabel);
-      //Make your special forEach function for changing every node list element
-      var nodeListForEach = function(list, callback) {
-        for (var i = 0; i < list.length; i++) {
-          callback(list[i], i);
-        }
-      };
       // Change node's percentages
       nodeListForEach(fields, function(current, index) {
         current.textContent = percentages[index];
@@ -274,6 +275,19 @@ var UIController = (function() {
       document.querySelector(DOMstrings.dateLabel).textContent =
         months[month] + " " + year;
     },
+    changeType: function() {
+      var fields = document.querySelectorAll(
+        DOMstrings.inputType +
+          "," +
+          DOMstrings.inputDescription +
+          "," +
+          DOMstrings.inputValue
+      );
+      console.log(fields);
+      nodeListForEach(fields, function(cur) {
+        cur.classList.toggle("red-focus");
+      });
+    },
 
     // Make DOMstring reachable for Global Controller
     getDOMstrings: function() {
@@ -302,6 +316,10 @@ var controller = (function(budgetCtrl, UICtrl) {
     document
       .querySelector(DOM.container)
       .addEventListener("click", ctrlDeleteItem);
+
+    document
+      .querySelector(DOM.inputType)
+      .addEventListener("change", UICtrl.changeType);
   };
 
   // Update Budget
