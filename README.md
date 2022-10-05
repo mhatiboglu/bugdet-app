@@ -1,4 +1,4 @@
-# 06_Budget_App  Architecture
+# Budget_App  Architecture
 <img src="./Architecture.png">
 
 
